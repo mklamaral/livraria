@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "corsheaders",
     "rest_framework",
+    "rest_framework_simplejwt",
+    "usuario",
     "livraria",
 ]
 
@@ -121,3 +123,15 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# RestFramework
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissions",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
+
+AUTH_USER_MODEL = "usuario.Usuario"
