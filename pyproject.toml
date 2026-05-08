@@ -5,7 +5,7 @@ description = "Default template for PDM package"
 authors = [
     {name = "mklamaral", email = "mikael.a.amaral07@gmail.com"},
 ]
-dependencies = ["django>=6.0.5", "djangorestframework>=3.17.1", "django-cors-headers>=4.9.0", "djangorestframework-simplejwt>=5.5.1", "setuptools>=82.0.1"]
+dependencies = ["django>=6.0.5", "djangorestframework>=3.17.1", "django-cors-headers>=4.9.0", "djangorestframework-simplejwt>=5.5.1", "setuptools>=82.0.1", "Pillow>=12.2.0", "python-magic>=0.4.27; sys_platform == \"linux\"", "python-magic-bin>=0.4.14; sys_platform == \"win32, darwin\"", "drf-spectacular>=0.29.0", "python-dotenv>=1.2.2", "netifaces>=0.11.0"]
 requires-python = "==3.14.*"
 readme = "README.md"
 license = {text = "MIT"}
@@ -13,3 +13,7 @@ license = {text = "MIT"}
 
 [tool.pdm]
 distribution = false
+
+[tool.pdm.scripts]
+pre_dev = "python ./scripts/set_my_ip.py"
+dev = "python manage.py runserver 0.0.0.0:19003"
