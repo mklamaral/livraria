@@ -1,4 +1,5 @@
 from rest_framework.serializers import ModelSerializer, CharField
+from rest_framework import serializers
 
 from livraria.models import Compra, ItensCompra
 
@@ -35,10 +36,11 @@ class CriarEditarItensCompraCompraSerializer(ModelSerializer):
 
 class CriarEditarCompraSerializer(ModelSerializer):
     itens = CriarEditarItensCompraCompraSerializer(many=True)
-
+    usuario = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    
     class Meta:
         model = Compra
-        fields = ("usuario", "itens")
+        fields = ("id", "usuario", "status", "total", "itens")
 
     def create(self, validated_data):
         itens_data = validated_data.pop("itens")
