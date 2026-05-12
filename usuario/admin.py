@@ -30,6 +30,7 @@ class CustomUserAdmin(UserAdmin):
                     "first_name",
                     "last_name",
                     "foto",
+                    "tipo_usuario",
                 )
             },
         ),

@@ -6,7 +6,16 @@ from .managers import CustomUserManager
 
 from uploader.models import Image
 
+
 class Usuario(AbstractUser):
+    class TipoUsuario(models.IntegerChoices):
+        CLIENTE = 1, "Cliente"
+        VENDEDOR = 2, "Vendedor"
+        GERENTE = 3, "Gerente"
+
+    tipo_usuario = models.IntegerField(
+        _("User Type"), choices=TipoUsuario.choices, default=TipoUsuario.CLIENTE
+    )
     foto = models.ForeignKey(
         Image,
         on_delete=models.SET_NULL,
